@@ -471,7 +471,12 @@
                     resolve(image);
                 };
                 image.onerror = reject;
-                image.src = uri;
+
+                if (/Edge\/\d./i.test(navigator.userAgent)){
+                    image.src = encodeURI(uri);
+                } else {
+                    image.src = uri;
+                }
             });
         }
 
